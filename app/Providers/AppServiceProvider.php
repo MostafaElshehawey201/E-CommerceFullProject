@@ -2,9 +2,13 @@
 
 namespace App\Providers;
 
-use App\Interfaces\ProfileDataUserInterface;
-use App\Properties\ProfileDataUserRepository;
+use App\Interfaces\CreateNewDepartmentInterface;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\ServiceProvider;
+use App\Interfaces\ProfileDataUserInterface;
+use Laravel\Fortify\Contracts\LoginResponse;
+use App\Properties\ProfileDataUserRepository;
+use App\Repositories\CreateNewDepartmentRepository;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -15,11 +19,30 @@ class AppServiceProvider extends ServiceProvider
             ProfileDataUserInterface::class,
             ProfileDataUserRepository::class,
         );
+        $this->app->bind(
+            CreateNewDepartmentInterface::class,
+            CreateNewDepartmentRepository::class
+        );
     }
 
 
     public function boot(): void
     {
-        //
+         $this->app->singleton(LoginResponse::class, function () {
+            return new class implements LoginResponse {
+                public function toResponse($request)
+                {
+                    $user = Auth::user();
+
+                    if (in_array($user->role->name, ['Admin', 'SuperAdmin'])) {
+                        return redirect()->route('AdminDashBoard');
+                    } elseif (in_array($user->role->name, ['Employee', 'Customer'])) {
+                        return redirect()->route('CustomerDashBoard');
+                    }
+
+                    return redirect('/'); // fallback
+                }
+            };
+        });
     }
 }

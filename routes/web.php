@@ -1,7 +1,11 @@
 <?php
 
-use App\Http\Controllers\ProfileUserController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\AdminController;
+use App\Http\Controllers\CustomerController;
+use App\Http\Controllers\DepartmentController;
+use App\Http\Middleware\CheckRoleMiddleware;
+use App\Http\Controllers\ProfileUserController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -16,6 +20,22 @@ Route::controller(ProfileUserController::class)->group(function(){
     Route::post("UserLogout" , "UserLogout")->name("UserLogout");
 });
 
+Route::middleware(['auth', 'role:SuperAdmin,Admin,Employee'])->controller(AdminController::class)
+->group(function(){
+    Route::get("Admin-DashBoard" , "DashBoard")->name("AdminDashBoard");
+});
+
+Route::middleware(['auth' , 'role:Customer'])->controller(CustomerController::class)
+->group(function(){
+    Route::get("Customer-DashBoard" ,"DashBoard")->name("CustomerDashBoard");
+});
+
+Route::middleware(['auth' , 'role:SuperAdmin,Admin'])->controller(DepartmentController::class)
+->group(function(){
+    Route::get("PageCreateNewDepartment" , 'PageCreateNewDepartment')->name('PageCreateNewDepartment');
+    Route::post("CreateNewDepartment" , "CreateNewDepartment")->name("CreateNewDepartment");
+    Route::get("ShowAllDepartments" , "ShowAllDepartments")->name("ShowAllDepartments");
+}); 
 Route::middleware([
     'auth:sanctum',
     config('jetstream.auth_session'),

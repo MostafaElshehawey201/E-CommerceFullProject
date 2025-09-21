@@ -569,6 +569,7 @@ pre {
   flex: 0 0 75%;
   max-width: 75%; }
 
+
 .col-10 {
   -webkit-box-flex: 0;
   -ms-flex: 0 0 83.33333%;
@@ -10666,3 +10667,11 @@ textarea.form-control {
   100% {
     stroke-dasharray: 89, 200;
     stroke-dashoffset: -136px; } }
+.ftco-footer.ftco-section {
+    padding: 20px 0;  /* قلل البادينج */
+    margin: 0;        /* شيل المسافات الزايدة */
+}
+
+.ftco-footer .ftco-footer-widget {
+    margin-bottom: 10px; /* قلل المسافة بين العناصر */
+}

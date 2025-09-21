@@ -29,10 +29,20 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'role_id'
     ];
 
-    public function ProfileUser(){
+    public function role()
+    {
+        return $this->belongsTo(Role::class);
+    }
+    public function ProfileUser()
+    {
         return $this->hasOne(ProfileUser::class);
+    }
+
+    public function Departments(){
+        return $this->hasMany(Department::class);
     }
     /**
      * The attributes that should be hidden for serialization.
