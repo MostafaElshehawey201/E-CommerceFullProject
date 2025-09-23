@@ -10,10 +10,10 @@
     	</div>
     	<div class="container">
     		<div class="row">
-				@foreach ($AllDepartments as $Department)
+				@foreach ($AllCategories as $Category)
     			<div class="col-sm-12 col-md-6 col-lg-4 ftco-animate d-flex">
 					<div class="product d-flex flex-column">
-						<a href="ShowAllCategories-{{$Department->id}}" class="img-prod"><img class="img-fluid" src="{{asset('uploads/images/'.$Department['image'])}}" alt="Colorlib Template">
+						<a href="#" class="img-prod"><img class="img-fluid" src="{{asset('uploads/images/'.$Category['image'])}}" alt="Colorlib Template">
     						<div class="overlay"></div>
     					</a>
     					<div class="px-3 py-3 pb-4 text">
@@ -31,9 +31,9 @@
 	    							</p>
 	    						</div>
 	    					</div>
-    						<h3><a href="#">{{$Department->name}}</a></h3>
+    						<h3><a href="#">{{$Category->name}}</a></h3>
     						<div class="pricing">
-								<p class="price"><span>{{$Department->description}}</span></p>
+								<p class="price"><span>{{$Category->description}}</span></p>
 	    					</div>
     					</div>
     				</div>

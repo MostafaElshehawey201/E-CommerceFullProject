@@ -2,13 +2,17 @@
 
 namespace App\Providers;
 
+use App\Interfaces\CreateNewCategoryInterface;
 use App\Interfaces\CreateNewDepartmentInterface;
+use App\Interfaces\CreateNewProductInterface;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\ServiceProvider;
 use App\Interfaces\ProfileDataUserInterface;
 use Laravel\Fortify\Contracts\LoginResponse;
 use App\Properties\ProfileDataUserRepository;
+use App\Repositories\CreateNewCategoryRepository;
 use App\Repositories\CreateNewDepartmentRepository;
+use App\Repositories\CreateNewProductRepository;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -22,6 +26,14 @@ class AppServiceProvider extends ServiceProvider
         $this->app->bind(
             CreateNewDepartmentInterface::class,
             CreateNewDepartmentRepository::class
+        );
+        $this->app->bind(
+            CreateNewCategoryInterface::class,
+            CreateNewCategoryRepository::class,
+        );
+        $this->app->bind(
+            CreateNewProductInterface::class,
+            CreateNewProductRepository::class,
         );
     }
 

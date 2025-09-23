@@ -58,6 +58,9 @@
 	      <div class="collapse navbar-collapse" id="ftco-nav">
 	        <ul class="ml-auto navbar-nav">
 				<li class="nav-item active"><a href="index.html" class="nav-link">Home</a></li>
+				<li class="nav-item active"><a href="PageCreateNewDepartment" class="nav-link">New Department</a></li>
+				<li class="nav-item active"><a href="PageCreateNewCategory" class="nav-link">New Category</a></li>
+				<li class="nav-item active"><a href="PageCreateNewProduct" class="nav-link">New Product</a></li>
 				<li class="nav-item dropdown">
 					<a class="nav-link dropdown-toggle" href="#" id="dropdown04" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Catalog</a>
 					<div class="dropdown-menu" aria-labelledby="dropdown04">

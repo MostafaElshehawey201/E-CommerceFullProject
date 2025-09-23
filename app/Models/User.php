@@ -44,6 +44,14 @@ class User extends Authenticatable
     public function Departments(){
         return $this->hasMany(Department::class);
     }
+    
+    public function Categories(){
+        return $this->hasMany(Category::class);
+    }
+
+    public function Products(){
+        return $this->hasMany(Product::class);
+    }
     /**
      * The attributes that should be hidden for serialization.
      *

@@ -2,8 +2,10 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\DepartmentController;
+use App\Http\Controllers\ProductController;
 use App\Http\Middleware\CheckRoleMiddleware;
 use App\Http\Controllers\ProfileUserController;
 
@@ -34,8 +36,29 @@ Route::middleware(['auth' , 'role:SuperAdmin,Admin'])->controller(DepartmentCont
 ->group(function(){
     Route::get("PageCreateNewDepartment" , 'PageCreateNewDepartment')->name('PageCreateNewDepartment');
     Route::post("CreateNewDepartment" , "CreateNewDepartment")->name("CreateNewDepartment");
-    Route::get("ShowAllDepartments" , "ShowAllDepartments")->name("ShowAllDepartments");
 }); 
+Route::controller(DepartmentController::class)->group(function(){
+    Route::get("ShowAllDepartments" , "ShowAllDepartments")->name("ShowAllDepartments");
+});
+
+Route::middleware(['auth' , 'role:SuperAdmin,Admin'])->controller(CategoryController::class)
+->group(function(){
+    Route::get("PageCreateNewCategory" , "PageCreateNewCategory")->name('PageCreateNewCategory');
+    Route::post("CreateNewCategory" , "CreateNewCategory")->name("CreateNewCategory");
+});
+Route::controller(CategoryController::class)->group(function(){
+    Route::get("ShowAllCategories-{Department_id}" , "ShowAllCategories")->name("ShowAllCategories");
+});
+
+Route::middleware(['auth' , 'role:SuperAdmin,Admin'])->controller(ProductController::class)
+->group(function(){
+    Route::get("PageCreateNewProduct" , "PageCreateNewProduct")->name("PageCreateNewProduct");
+    Route::post("CreateNewProduct" ,"CreateNewProduct")->name("CreateNewProduct");
+});
+Route::controller(ProductController::class)->group(function(){
+    Route::get("ShowAllProducts-{category_id}" , "ShowAllProducts")->name("ShowAllProducts");
+});
+
 Route::middleware([
     'auth:sanctum',
     config('jetstream.auth_session'),

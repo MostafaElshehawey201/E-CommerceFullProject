@@ -13,4 +13,12 @@ class Department extends Model
     public function Created_by(){
         return $this->belongsTo(User::class);
     }
+
+    public function Categories(){
+        return $this->hasMany(Category::class);
+    }
+
+    public function Products(){
+        return $this->hasMany(Product::class);
+    }
 }
