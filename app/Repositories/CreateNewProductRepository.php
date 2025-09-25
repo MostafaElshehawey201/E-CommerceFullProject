@@ -52,7 +52,7 @@ class CreateNewProductRepository implements CreateNewProductInterface
                     // "images"=>json_encode($images) ?? null,
 
                     // طب انا عامل ال casts في يبق انا مش محتاج اعمل ال json_encode 
-                    "images"=> $images,
+                    "images"=> $images ?? null,
                 ]);
                 return [
                     "success" => true,

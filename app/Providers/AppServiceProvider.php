@@ -5,6 +5,7 @@ namespace App\Providers;
 use App\Interfaces\CreateNewCategoryInterface;
 use App\Interfaces\CreateNewDepartmentInterface;
 use App\Interfaces\CreateNewProductInterface;
+use App\Interfaces\EditDataProductInterface;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\ServiceProvider;
 use App\Interfaces\ProfileDataUserInterface;
@@ -13,6 +14,7 @@ use App\Properties\ProfileDataUserRepository;
 use App\Repositories\CreateNewCategoryRepository;
 use App\Repositories\CreateNewDepartmentRepository;
 use App\Repositories\CreateNewProductRepository;
+use App\Repositories\EditDataProductRepository;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -34,6 +36,10 @@ class AppServiceProvider extends ServiceProvider
         $this->app->bind(
             CreateNewProductInterface::class,
             CreateNewProductRepository::class,
+        );
+        $this->app->bind(
+            EditDataProductInterface::class,
+            EditDataProductRepository::class
         );
     }
 

@@ -31,4 +31,20 @@ class CategoryController extends Controller
         $AllCategories = Category::where("department_id" , $Department_id)->get();
         return view("Categories.ShowAllCategories" , compact('AllCategories'));
     }
+
+    public function PageShowCategories($Department_id)
+    {
+        $AllCategories = Category::where('department_id', $Department_id)->get();
+        return view("Categories.PageShowCategory", ["AllCategories" => $AllCategories]);
+    }
+
+    public function PageEditCategory($category_id){
+        $Departments = Department::all();
+        $category = Category::where('id' , $category_id)->firstOrFail();
+        return view("Categories.PageEditCategory",["Departments"=>$Departments , "category"=>$category , "category_id"=>$category_id]);
+    }
+
+    public function EditCategoryData(Request $request , $category_id){
+        
+    }
 }

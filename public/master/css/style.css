@@ -415,6 +415,63 @@ mark,
   font-size: 90%;
   color: #6c757d; }
 
+  /* عرض المنتجات */
+/* ======== Price & Discount Style ======== */
+.price span {
+   display: inline-block;
+   background: var(--light);
+   color:#000;
+   padding: 4px 10px;
+   border-radius: 4px;
+   margin: 4px 19px;
+   font-weight: 500;
+   font-size: 0.9rem;
+   transition: all 0.3s ease;
+   cursor: pointer;
+
+   opacity: 0;              /* مخفي */
+   visibility: hidden;      /* غير ظاهر */
+   transform: translateY(5px); /* ينزل لتحت سنة */
+}
+
+/* لما اعمل hover على الكارت أو على stock نفسه */
+.product:hover .price span,
+.price:hover span {
+   opacity: 1; 
+   visibility: visible;
+   transform: translateY(0);  /* يرجع مكانه */
+}
+
+
+
+
+/* في العادي يبقى مخفي */
+.stock span {
+   display: inline-block;
+   background: var(--light);
+   color:#000;
+   padding: 4px 19px;
+   border-radius: 4px;
+   margin: 4px 18px;
+   font-weight: 500;
+   font-size: 0.9rem;
+   transition: all 0.3s ease;
+   cursor: pointer;
+
+   opacity: 0;              /* مخفي */
+   visibility: hidden;      /* غير ظاهر */
+   transform: translateY(5px); /* ينزل لتحت سنة */
+}
+
+/* لما اعمل hover على الكارت أو على stock نفسه */
+.product:hover .stock span,
+.stock:hover span {
+   opacity: 1; 
+   visibility: visible;
+   transform: translateY(0);  /* يرجع مكانه */
+}
+/* نهاية تصميم عرض المنتجات */
+
 code {
   font-size: 87.5%;
   color: #e83e8c;

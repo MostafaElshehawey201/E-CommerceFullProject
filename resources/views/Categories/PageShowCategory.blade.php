@@ -15,7 +15,7 @@
 				@foreach ($AllCategories as $Category)
     			<div class="col-sm-12 col-md-6 col-lg-4 ftco-animate d-flex">
 					<div class="product d-flex flex-column">
-						<a href="ShowAllProducts-{{$Category->id}}" class="img-prod"><img class="img-fluid" src="{{asset('uploads/images/'.$Category['image'])}}" alt="Colorlib Template">
+						<a href="PageShowProducts-{{$Category->id}}" class="img-prod"><img class="img-fluid" src="{{asset('uploads/images/'.$Category['image'])}}" alt="Colorlib Template">
     						<div class="overlay"></div>
     					</a>
     					<div class="px-3 py-3 pb-4 text">
@@ -37,6 +37,10 @@
     						<div class="pricing">
 								<p class="price"><span>{{$Category->description}}</span></p>
 	    					</div>
+							<p class="px-3 bottom-area d-flex">
+    							<a href="#" class="py-2 mr-1 text-center add-to-cart"><span>Delete Category</span></a>
+    							<a href="PageEditCategory-{{$Category->id}}" class="py-2 text-center buy-now">Edit Category<span></span></a>
+    						</p>
     					</div>
     				</div>
     			</div>

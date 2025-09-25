@@ -45,6 +45,9 @@ Route::middleware(['auth' , 'role:SuperAdmin,Admin'])->controller(CategoryContro
 ->group(function(){
     Route::get("PageCreateNewCategory" , "PageCreateNewCategory")->name('PageCreateNewCategory');
     Route::post("CreateNewCategory" , "CreateNewCategory")->name("CreateNewCategory");
+    Route::get("PageShowCategories-{department_id}" , "PageShowCategories")->name("PageShowCategories");
+    Route::get('PageEditCategory-{category_id}' , "PageEditCategory")->name('PageEditCategory');
+    Route::post("EditCategoryData-{category_id}" , "EditCategoryData")->name("EditCategoryData");
 });
 Route::controller(CategoryController::class)->group(function(){
     Route::get("ShowAllCategories-{Department_id}" , "ShowAllCategories")->name("ShowAllCategories");
@@ -54,6 +57,10 @@ Route::middleware(['auth' , 'role:SuperAdmin,Admin'])->controller(ProductControl
 ->group(function(){
     Route::get("PageCreateNewProduct" , "PageCreateNewProduct")->name("PageCreateNewProduct");
     Route::post("CreateNewProduct" ,"CreateNewProduct")->name("CreateNewProduct");
+    Route::get("PageShowDepartments" , "PageShowDepartments")->name("PageShowDepartments");
+    Route::get("PageShowProducts-{category_id}" ,"PageShowProducts")->name("PageShowProducts");
+    Route::get("PageEditProduct-{product_id}" , "PageEditProduct")->name("PageEditProduct");
+    Route::post("EditDataProduct-{product_id}" , "EditDataProduct")->name('EditDataProduct');
 });
 Route::controller(ProductController::class)->group(function(){
     Route::get("ShowAllProducts-{category_id}" , "ShowAllProducts")->name("ShowAllProducts");
