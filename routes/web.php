@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\CartController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\DepartmentController;
@@ -64,7 +65,18 @@ Route::middleware(['auth' , 'role:SuperAdmin,Admin'])->controller(ProductControl
 });
 Route::controller(ProductController::class)->group(function(){
     Route::get("ShowAllProducts-{category_id}" , "ShowAllProducts")->name("ShowAllProducts");
+    Route::get("PageSearch" ,"PageSearch")->name("PageSearch");
+    Route::post("Search" , "Search")->name("Search");
 });
+
+
+Route::middleware(['auth'])->controller(CartController::class)->group(function(){
+    Route::get("PageBuySeveralItemFromProduct" ,"PageBuySeveralItemFromProduct" )->name("PageBuySeveralItemFromProduct");
+    Route::get("PageAddItemToCart-{product_id}" , 'PageAddItemToCart')->name('PageAddItemToCart');
+    Route::post("AddProductToCart-{product_id}" , "AddProductToCart")->name("AddProductToCart");
+}); 
+
+
 
 Route::middleware([
     'auth:sanctum',

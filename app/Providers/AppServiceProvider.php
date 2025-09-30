@@ -2,19 +2,26 @@
 
 namespace App\Providers;
 
-use App\Interfaces\CreateNewCategoryInterface;
-use App\Interfaces\CreateNewDepartmentInterface;
-use App\Interfaces\CreateNewProductInterface;
-use App\Interfaces\EditDataProductInterface;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\ServiceProvider;
+use App\Interfaces\AddItemsToCartInterface;
+use App\Interfaces\EditDataProductInterface;
 use App\Interfaces\ProfileDataUserInterface;
 use Laravel\Fortify\Contracts\LoginResponse;
+use App\Interfaces\AddProdcutToCartInterface;
+use App\Interfaces\AddProductToCartInterface;
+use App\Interfaces\CreateNewProductInterface;
 use App\Properties\ProfileDataUserRepository;
+use App\Repositories\AddItemToCartRepository;
+use App\Interfaces\CreateNewCategoryInterface;
+use App\Repositories\EditDataProductRepository;
+use App\Interfaces\CreateNewDepartmentInterface;
+use App\Repositories\AddProductToCartRepository;
+use App\Repositories\CreateNewProductRepository;
+use App\Repositories\EditDataCategoryRepository;
+use App\Interfaces\EditDataCategoryDataInterface;
 use App\Repositories\CreateNewCategoryRepository;
 use App\Repositories\CreateNewDepartmentRepository;
-use App\Repositories\CreateNewProductRepository;
-use App\Repositories\EditDataProductRepository;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -40,6 +47,19 @@ class AppServiceProvider extends ServiceProvider
         $this->app->bind(
             EditDataProductInterface::class,
             EditDataProductRepository::class
+        );
+        $this->app->bind(
+            EditDataCategoryDataInterface::class,
+            EditDataCategoryRepository::class,
+        );
+
+        $this->app->bind(
+            AddItemsToCartInterface::class ,
+            AddItemToCartRepository::class
+        );
+        $this->app->bind(
+            AddProductToCartInterface::class,
+            AddProductToCartRepository::class
         );
     }
 

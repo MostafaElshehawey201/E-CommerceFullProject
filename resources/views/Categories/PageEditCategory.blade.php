@@ -31,7 +31,7 @@
         @endif
         <div class="row block-9">
             <div class="col-md-6 order-md-last d-flex">
-                <form action="CreateNewCategory" method="POST" enctype="multipart/form-data"
+                <form action="EditCategoryData-{{$category->id}}" method="POST" enctype="multipart/form-data"
                     class="p-5 bg-white contact-form">
                     @csrf
                     <div class="text-center col-md-6 order-md-last d-flex">

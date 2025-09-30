@@ -52,11 +52,12 @@ class User extends Authenticatable
     public function Products(){
         return $this->hasMany(Product::class);
     }
-    /**
-     * The attributes that should be hidden for serialization.
-     *
-     * @var array<int, string>
-     */
+
+    public function Carts(){
+        return $this->hasMany(Cart::class);
+    }
+ 
+    
     protected $hidden = [
         'password',
         'remember_token',

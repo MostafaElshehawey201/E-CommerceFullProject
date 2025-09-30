@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Category;
 use App\Models\Department;
 use App\Services\CreateNewCategoryService;
+use App\Services\EditDataCategoryService;
 use Illuminate\Http\Request;
 
 class CategoryController extends Controller
@@ -18,18 +19,19 @@ class CategoryController extends Controller
     {
         $returnSuccessFromRepository = $createNewCategoryService->MethodCreateNewCategory($request);
         $Departments = Department::all();
-        if($returnSuccessFromRepository['success'] == true){
-            session('success' , "Category Created SuccessFully");
+        if ($returnSuccessFromRepository['success'] == true) {
+            session('success', "Category Created SuccessFully");
             return view("Categories.PageCreateNewCategory", ["Departments" => $Departments]);
-        }else{
-            session('success' , "Category Cn't Created");
+        } else {
+            session('success', "Category Cn't Created");
             return view("Categories.PageCreateNewCategory", ["Departments" => $Departments]);
         }
     }
 
-    public function ShowAllCategories($Department_id){
-        $AllCategories = Category::where("department_id" , $Department_id)->get();
-        return view("Categories.ShowAllCategories" , compact('AllCategories'));
+    public function ShowAllCategories($Department_id)
+    {
+        $AllCategories = Category::where("department_id", $Department_id)->get();
+        return view("Categories.ShowAllCategories", compact('AllCategories'));
     }
 
     public function PageShowCategories($Department_id)
@@ -38,13 +40,26 @@ class CategoryController extends Controller
         return view("Categories.PageShowCategory", ["AllCategories" => $AllCategories]);
     }
 
-    public function PageEditCategory($category_id){
+    public function PageEditCategory($category_id)
+    {
         $Departments = Department::all();
-        $category = Category::where('id' , $category_id)->firstOrFail();
-        return view("Categories.PageEditCategory",["Departments"=>$Departments , "category"=>$category , "category_id"=>$category_id]);
+        $category = Category::where('id', $category_id)->firstOrFail();
+        return view("Categories.PageEditCategory", ["Departments" => $Departments, "category" => $category, "category_id" => $category_id]);
     }
 
-    public function EditCategoryData(Request $request , $category_id){
-        
+    public function EditCategoryData(Request $request, $category_id, EditDataCategoryService $editDataCategoryService)
+    {
+        $returnDataFromRepositoryByService = $editDataCategoryService->MethodEditDataCategoryInterface($request, $category_id);
+        if ($returnDataFromRepositoryByService['success'] == true) {
+            $Departments = Department::all();
+            $category = Category::where('id', $category_id)->firstOrFail();
+            session()->flash('success', "updated Successfully");
+            return view("Categories.PageEditCategory", ["Departments" => $Departments, "category" => $category, "category_id" => $category_id]);
+        } else {
+            $Departments = Department::all();
+            $category = Category::where('id', $category_id)->firstOrFail();
+            session()->flash('success', "Cn't Be Edit Data");
+            return view("Categories.PageEditCategory", ["Departments" => $Departments, "category" => $category, "category_id" => $category_id]);
+        }
     }
 }
