@@ -57,7 +57,9 @@ class User extends Authenticatable
         return $this->hasMany(Cart::class);
     }
  
-    
+    public function Orders(){
+        return $this->hasMany(Order::class);
+    }
     protected $hidden = [
         'password',
         'remember_token',

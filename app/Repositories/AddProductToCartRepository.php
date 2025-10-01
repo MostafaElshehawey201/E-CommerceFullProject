@@ -26,7 +26,7 @@ class AddProductToCartRepository implements AddProductToCartInterface
                 ]);
                 $CartItems = CartItems::create([
                     "quantity" => $QuantityBuy,
-                    "price" => $Product->price - $Product->discount_price,
+                    "price" => $QuantityBuy*($Product->price - $Product->discount_price),
                     "product_id" => $product_id,
                     "cart_id" => $Cart->id,
                 ]);

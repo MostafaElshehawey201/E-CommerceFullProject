@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Cart;
 use App\Models\Product;
+use App\Models\CartItems;
+use Illuminate\Http\Request;
 use App\Services\AddItemToCartService;
 use App\Services\AddProductToToCartService;
-use Illuminate\Http\Request;
 
 class CartController extends Controller
 {
@@ -37,5 +39,20 @@ class CartController extends Controller
         }else{
             return back()->with('success' , "Product Don't add To Cart"); 
         }
+    }
+
+    public function ShowAllProductCart(){
+        $Products = CartItems::latest()->get();
+        return view("Carts.ShowAllProductInCart" , ['Products'=>$Products]);
+    }
+
+    public function PageEditProductCart($product_id){
+        $product = CartItems::where('id' , $product_id)->firstOrFail();
+        $image = $product->Product->image;
+        return view("Carts.PageEditProductCart" , ['product'=>$product ,"image"=>$image]);
+    }
+
+    public function EditProductCart(Request $request , $product_id){
+
     }
 }

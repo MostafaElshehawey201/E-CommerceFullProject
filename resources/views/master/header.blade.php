@@ -79,8 +79,8 @@
                     </li>
                     <li class="nav-item"><a href="PageShowDataUser-{{ Auth::user()->id }}" class="nav-link">Profile</a>
                     </li>
-                    <li class="nav-item"><a href="blog.html" class="nav-link">Blog</a></li>
-                    <li class="nav-item cta cta-colored"><a href="cart.html" class="nav-link"><span
+                    <li class="nav-item"><a href="PageBuySeveralItemFromProduct" class="nav-link">Shop</a></li>
+                    <li class="nav-item cta cta-colored"><a href="ShowAllProductCart" class="nav-link"><span
                                 class="icon-shopping_cart"></span>[0]</a></li>
                     <li class="nav-item cta cta-colored">
                         <a href="PageSearch" class="nav-link">

@@ -67,13 +67,13 @@
                     </li>
                     <li class="nav-item active"><a href="PageCreateNewCategory" class="nav-link">New Category</a></li>
                     <li class="nav-item active"><a href="PageCreateNewProduct" class="nav-link">New Product</a></li>
+                    <li class="nav-item"><a href="PageBuySeveralItemFromProduct" class="nav-link">Shop</a></li>
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="dropdown04" data-toggle="dropdown"
                             aria-haspopup="true" aria-expanded="false">Catalog</a>
                         <div class="dropdown-menu" aria-labelledby="dropdown04">
                             <a class="dropdown-item" href="ShowAllDepartments">Show all Departments</a>
                             <a class="dropdown-item" href="PageShowDepartments">Details Departments</a>
-                            <li class="nav-item"><a href="PageBuySeveralItemFromProduct" class="nav-link">Shop</a></li>
 
                             <a class="dropdown-item" href="checkout.html">Checkout</a>
                         </div>
@@ -101,7 +101,7 @@
                     <p class="breadcrumbs"><span class="mr-2"><a href="index.html">Home</a></span>
                         <span>Shop</span>
                     </p>
-                    <h1 class="mb-0 bread">Shop</h1>
+                    <h1 class="mb-0 bread">Cart</h1>
                 </div>
             </div>
         </div>
@@ -156,7 +156,7 @@
 
                                         </div>
                                         <p class="px-3 bottom-area d-flex">
-                                            <a href="PageAddItemToCart-{{$product->id}}" class="py-2 mr-1 text-center add-to-cart"><span>Add to
+                                            <a href="PageEditProductCart-{{$product->id}}" class="py-2 mr-1 text-center add-to-cart"><span>Edit
                                                     cart
                                                     <i class="ml-1 ion-ios-add"></i></span></a>
                                             <a href="#" class="py-2 text-center buy-now">Buy now<span><i

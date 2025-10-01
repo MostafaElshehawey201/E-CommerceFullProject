@@ -74,6 +74,9 @@ Route::middleware(['auth'])->controller(CartController::class)->group(function()
     Route::get("PageBuySeveralItemFromProduct" ,"PageBuySeveralItemFromProduct" )->name("PageBuySeveralItemFromProduct");
     Route::get("PageAddItemToCart-{product_id}" , 'PageAddItemToCart')->name('PageAddItemToCart');
     Route::post("AddProductToCart-{product_id}" , "AddProductToCart")->name("AddProductToCart");
+    Route::get("ShowAllProductCart" , "ShowAllProductCart")->name("ShowAllProductCart");
+    Route::get('PageEditProductCart-{product_id}' ,"PageEditProductCart")->name("PageEditProductCart");
+    Route::post("EditProductCart-{product_id}" , "EditProductCart")->name('EditProductCart');
 }); 
 
 

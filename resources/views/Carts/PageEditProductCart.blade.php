@@ -100,7 +100,7 @@
                     <p class="breadcrumbs"><span class="mr-2"><a href="index.html">Home</a></span>
                         <span>Shop</span>
                     </p>
-                    <h1 class="mb-0 bread">Shop</h1>
+                    <h1 class="mb-0 bread">Edit Product Cart</h1>
                 </div>
             </div>
         </div>
@@ -110,9 +110,12 @@
         <div class="container">
             <div class="row">
                 <div class="mb-5 col-lg-6 ftco-animate">
-                    <a href="images/product-1.png" class="image-popup prod-img-bg"><img
-                            src="{{ asset('uploads/images/' . $product->image) }}" class="img-fluid"
-                            alt="Colorlib Template"></a>
+                    <a href="images/product-1.png" class="image-popup prod-img-bg">
+                        @if (!empty($image))
+                            <img src="{{ asset('uploads/images/' . $image) }}" class="img-fluid" alt="Colorlib Template"></a>  
+                        @else
+                            <img src="{{ asset('uploads/images/1758200856.png') }}" class="img-fluid" alt="Colorlib Template"></a>  
+                        @endif
                 </div>
                 <div class="col-lg-6 product-details pl-md-5 ftco-animate">
                     <h3>{{ $product->name }}</h3>
@@ -134,11 +137,11 @@
                                     style="color: #bbb;">Sold</span></a>
                         </p>
                     </div>
-                    <p class="price"><span>Price {{ $product->price - $product->discount_price }}</span></p>
-                    <p>{{ $product->description }}</p>
-                    <p style="color: #000;">{{ $product->stock }} piece available</p>
+                    <p class="price"><span>Price {{$product->price}}</span></p>
+                    <p>Quantity {{$product->quantity}}</p>
+                    {{-- <p style="color: #000;">{{ $product->stock }} piece available</p> --}}
 
-                    <div class="mt-4 row">
+                    {{-- <div class="mt-4 row">
                         <div class="col-md-6">
                             <div class="form-group d-flex">
                                 <div class="select-wrap">
@@ -153,7 +156,7 @@
                             </div>
                         </div>
 
-                    </div>
+                    </div> --}}
                     <div class="gap-3 d-flex">
                         <!-- فورم Add to Cart -->
                         <form action="AddProductToCart-{{ $product->id }}" method="POST"
@@ -181,10 +184,6 @@
                                 <button type="submit" name="action" value="add_to_cart"
                                     class="btn-custom btn-black">
                                     Add to Cart
-                                </button>
-
-                                <button type="submit" name="action" value="buy_now" class="btn-custom btn-gold">
-                                    Buy Now
                                 </button>
                             </div>
                         </form>
